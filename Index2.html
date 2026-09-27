@@ -1,0 +1,738 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tanmay | Personal Space</title>
+
+    <style>
+        /* =========================
+           GLOBAL
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #080b14;
+            color: #f5f7ff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(99,102,241,.20), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(6,182,212,.15), transparent 30%),
+                radial-gradient(circle at 50% 90%, rgba(168,85,247,.12), transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1100px, 92%);
+            padding: 14px 22px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(15, 18, 30, .72);
+            border: 1px solid rgba(255,255,255,.08);
+            backdrop-filter: blur(18px);
+
+            border-radius: 18px;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #b9bfd3;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            padding: 120px 20px 70px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            margin-bottom: 22px;
+
+            border: 1px solid rgba(139,92,246,.35);
+            border-radius: 50px;
+
+            color: #c4b5fd;
+            background: rgba(139,92,246,.08);
+
+            font-size: 13px;
+        }
+
+        h1 {
+            font-size: clamp(55px, 9vw, 105px);
+            line-height: .95;
+            letter-spacing: -5px;
+            margin-bottom: 25px;
+        }
+
+        .gradient {
+            background: linear-gradient(
+                90deg,
+                #8b5cf6,
+                #06b6d4,
+                #22c55e
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+
+            color: #9ca3b7;
+            font-size: 18px;
+        }
+
+        .buttons {
+            margin-top: 35px;
+
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 22px;
+            border-radius: 12px;
+
+            font-weight: 700;
+            font-size: 14px;
+
+            transition: .25s;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #080b14;
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.04);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           SECTIONS
+        ========================== */
+
+        section {
+            width: min(1100px, 92%);
+            margin: auto;
+            padding: 110px 0;
+        }
+
+        .section-title {
+            font-size: 38px;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            color: #858ca3;
+            margin-bottom: 35px;
+        }
+
+        /* =========================
+           CARDS
+        ========================== */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            padding: 25px;
+
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.08);
+
+            border-radius: 20px;
+
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(139,92,246,.45);
+            background: rgba(255,255,255,.055);
+        }
+
+        .icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #858ca3;
+            font-size: 14px;
+        }
+
+        /* =========================
+           FILE ARCHIVE
+        ========================== */
+
+        .file {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 18px;
+
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+
+        .file:last-child {
+            border-bottom: none;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .file-icon {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background: rgba(239,68,68,.12);
+            color: #f87171;
+        }
+
+        .file-name {
+            font-weight: 700;
+        }
+
+        .file-type {
+            font-size: 12px;
+            color: #747b91;
+        }
+
+        .open {
+            padding: 8px 14px;
+
+            border-radius: 9px;
+            background: rgba(255,255,255,.06);
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           GALLERY
+        ========================== */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            transition: .35s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.025);
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+
+            border-top: 1px solid rgba(255,255,255,.07);
+
+            color: #737a91;
+            font-size: 13px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media(max-width: 800px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                letter-spacing: -3px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================== -->
+
+<nav>
+
+    <div class="logo">
+        Tanmay<span>.</span>
+    </div>
+
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#files">Files</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            Personal Digital Space • 2026
+        </div>
+
+        <h1>
+            Hi, I'm <span class="gradient">Tanmay.</span>
+        </h1>
+
+        <p>
+            Student, guitarist, gamer, PC enthusiast and someone
+            who enjoys building things, experimenting with technology
+            and learning something new every day.
+        </p>
+
+        <div class="buttons">
+
+            <a class="btn btn-primary" href="#projects">
+                Explore My Work
+            </a>
+
+            <a class="btn btn-secondary" href="#files">
+                View My Files
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     ABOUT
+========================== -->
+
+<section id="about">
+
+    <h2 class="section-title">
+        About Me
+    </h2>
+
+    <p class="section-description">
+        A little corner of the internet that belongs to me.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="icon">🎓</div>
+
+            <h3>Student</h3>
+
+            <p>
+                Currently studying in Class 10 and exploring
+                science, mathematics and technology.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎸</div>
+
+            <h3>Guitar</h3>
+
+            <p>
+                Acoustic guitarist learning songs, techniques
+                and gradually moving toward electric guitar.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🖥️</div>
+
+            <h3>Technology</h3>
+
+            <p>
+                Interested in PCs, hardware, software,
+                AI, programming and electronics.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================== -->
+
+<section id="projects">
+
+    <h2 class="section-title">
+        Projects
+    </h2>
+
+    <p class="section-description">
+        Things I've built, experimented with or worked on.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="icon">🤖</div>
+
+            <h3>Arduino Smart Bin</h3>
+
+            <p>
+                An automated dustbin that detects its fill level
+                and indicates when it is nearly full.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🌱</div>
+
+            <h3>Science Projects</h3>
+
+            <p>
+                Experiments and models related to environment,
+                sustainability and everyday technology.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🐍</div>
+
+            <h3>Python</h3>
+
+            <p>
+                Learning programming from the fundamentals
+                and building small experiments.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FILES
+========================== -->
+
+<section id="files">
+
+    <h2 class="section-title">
+        My Digital Archive
+    </h2>
+
+    <p class="section-description">
+        Presentations, PDFs, notes and other useful files.
+    </p>
+
+
+    <div class="card">
+
+        <!-- FILE 1 -->
+
+        <div class="file">
+
+            <div class="file-info">
+
+                <div class="file-icon">
+                    PDF
+                </div>
+
+                <div>
+                    <div class="file-name">
+                        NotebookLM Slide Deck
+                    </div>
+
+                    <div class="file-type">
+                        PDF Document
+                    </div>
+                </div>
+
+            </div>
+
+            <a
+                class="open"
+                href="assets/files/notebooklm-slide-deck.pdf"
+                target="_blank"
+            >
+                Open
+            </a>
+
+        </div>
+
+
+        <!-- FILE 2 -->
+
+        <div class="file">
+
+            <div class="file-info">
+
+                <div class="file-icon">
+                    PDF
+                </div>
+
+                <div>
+
+                    <div class="file-name">
+                        Science Project
+                    </div>
+
+                    <div class="file-type">
+                        PDF Document
+                    </div>
+
+                </div>
+
+            </div>
+
+            <a
+                class="open"
+                href="assets/files/science-project.pdf"
+                target="_blank"
+            >
+                Open
+            </a>
+
+        </div>
+
+
+        <!-- FILE 3 -->
+
+        <div class="file">
+
+            <div class="file-info">
+
+                <div class="file-icon">
+                    PPT
+                </div>
+
+                <div>
+
+                    <div class="file-name">
+                        My Presentation
+                    </div>
+
+                    <div class="file-type">
+                        PowerPoint
+                    </div>
+
+                </div>
+
+            </div>
+
+            <a
+                class="open"
+                href="assets/files/presentation.pptx"
+                target="_blank"
+            >
+                Open
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GALLERY
+========================== -->
+
+<section id="gallery">
+
+    <h2 class="section-title">
+        Gallery
+    </h2>
+
+    <p class="section-description">
+        A collection of photographs and moments.
+    </p>
+
+    <div class="gallery">
+
+        <img
+            src="assets/images/profile.jpg"
+            alt="Tanmay"
+        >
+
+        <img
+            src="assets/images/guitar.jpg"
+            alt="My Guitar"
+        >
+
+        <img
+            src="assets/images/pc.jpg"
+            alt="My PC Setup"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    © 2026 Tanmay.
+    Built with HTML, CSS and curiosity.
+
+</footer>
+
+
+</body>
+</html>
+```
